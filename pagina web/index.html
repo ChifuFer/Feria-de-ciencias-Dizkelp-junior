@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Trivia DizKelp-Junior</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f8ff;
+      padding: 20px;
+      max-width: 600px;
+      margin: auto;
+    }
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+    .question {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+    .options button {
+      display: block;
+      margin: 8px 0;
+      padding: 15px;
+      font-size: 1.1em;
+      width: 100%;
+      border-radius: 8px;
+      border: none;
+      background-color: #d0eaff;
+      cursor: pointer;
+    }
+    .options button:hover {
+      background-color: #a3d4ff;
+    }
+    #feedback {
+      margin-top: 10px;
+    }
+    #score {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    #nextBtn {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h2>Trivia DizKelp-Junior</h2>
+  <div id="score">Puntos: 0</div>
+  <div class="card" id="quiz-container">
+    <div class="question" id="question"></div>
+    <div class="options" id="options"></div>
+    <div id="feedback"></div>
+    <button id="nextBtn" onclick="nextQuestion()" style="display:none;">Siguiente</button>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        text: "¿Qué significa tener una discapacidad motriz?",
+        options: [
+          "Tener una inteligencia superior a la media",
+          "Tener dificultad para moverse o controlar partes del cuerpo",
+          "No poder hablar en público"
+        ],
+        answer: 1,
+        explanation: "Las discapacidades motrices afectan la movilidad o coordinación del cuerpo."
+      },
+      {
+        text: "¿Qué es lo más importante al tratar con una persona con discapacidad?",
+        options: [
+          "Hablarle muy fuerte",
+          "Evitar mirarla directamente",
+          "Tratarla con respeto y empatía"
+        ],
+        answer: 2,
+        explanation: "El respeto y la empatía son claves para una convivencia inclusiva."
+      },
+      {
+        text: "¿Una persona con discapacidad puede ir a la escuela?",
+        options: [
+          "No, debe quedarse en casa",
+          "Solo si aprende más rápido",
+          "Sí, como cualquier otra persona"
+        ],
+        answer: 2,
+        explanation: "La educación inclusiva permite que todos los niños y niñas aprendan juntos."
+      },
+      {
+        text: "¿Qué es una discapacidad sensorial?",
+        options: [
+          "Una dificultad para ver o escuchar",
+          "Una dificultad para correr",
+          "Una dificultad para hablar en público"
+        ],
+        answer: 0,
+        explanation: "Las discapacidades sensoriales afectan los sentidos como la vista o la audición."
+      },
+      {
+        text: "¿Qué debemos hacer si vemos a alguien con discapacidad que necesita ayuda?",
+        options: [
+          "Ignorarlo para no incomodarlo",
+          "Ofrecer ayuda con respeto",
+          "Reírnos con los amigos"
+        ],
+        answer: 1,
+        explanation: "Siempre es bueno ofrecer ayuda, pero con respeto y sin imponer."
+      },
+      {
+        text: "¿Las personas con discapacidad pueden trabajar?",
+        options: [
+          "No, deben quedarse en casa",
+          "Sí, pueden hacer muchos tipos de trabajos",
+          "Solo trabajos muy fáciles"
+        ],
+        answer: 1,
+        explanation: "Las personas con discapacidad pueden desempeñar múltiples profesiones y tareas."
+      },
+      {
+        text: "¿Qué ayuda a que las personas con discapacidad se integren mejor a la sociedad?",
+        options: [
+          "Eliminar barreras físicas y sociales",
+          "No dejar que salgan mucho",
+          "Solo hablar con ellas si nos hablan primero"
+        ],
+        answer: 0,
+        explanation: "Eliminar barreras permite la inclusión y participación plena en la sociedad."
+      },
+      {
+        text: "¿Qué es una discapacidad intelectual?",
+        options: [
+          "Una dificultad para aprender y adaptarse al entorno",
+          "Una enfermedad de la vista",
+          "Una dificultad para caminar"
+        ],
+        answer: 0,
+        explanation: "Las discapacidades intelectuales afectan el desarrollo del pensamiento y el aprendizaje."
+      },
+      {
+        text: "¿Por qué es importante la inclusión?",
+        options: [
+          "Porque todos tenemos derecho a participar",
+          "Para que no se aburran las personas con discapacidad",
+          "Porque así no tenemos que enseñarles cosas nuevas"
+        ],
+        answer: 0,
+        explanation: "La inclusión garantiza igualdad de derechos y oportunidades para todos."
+      },
+      {
+        text: "¿Qué actitud debemos tener hacia las personas con discapacidad?",
+        options: [
+          "Lástima",
+          "Ignorancia",
+          "Empatía y respeto"
+        ],
+        answer: 2,
+        explanation: "La empatía y el respeto ayudan a construir una sociedad más justa e inclusiva."
+      }
+    ];
+
+    let current = 0;
+    let score = 0;
+
+    function loadQuestion() {
+      const q = questions[current];
+      document.getElementById("question").innerText = q.text;
+      const opts = document.getElementById("options");
+      opts.innerHTML = "";
+      q.options.forEach((opt, idx) => {
+        const btn = document.createElement("button");
+        btn.textContent = opt;
+        btn.onclick = () => checkAnswer(idx);
+        opts.appendChild(btn);
+      });
+      document.getElementById("feedback").innerText = "";
+      document.getElementById("nextBtn").style.display = "none";
+    }
+
+    function checkAnswer(selected) {
+      const q = questions[current];
+      const feedback = document.getElementById("feedback");
+      if (selected === q.answer) {
+        score += 10;
+        feedback.style.color = "green";
+        feedback.innerText = "¡Correcto! +10 puntos.";
+      } else {
+        feedback.style.color = "red";
+        feedback.innerText = `Incorrecto. ${q.explanation}`;
+      }
+      document.getElementById("score").innerText = `Puntos: ${score}`;
+      document.getElementById("nextBtn").style.display = "inline-block";
+      const btns = document.querySelectorAll(".options button");
+      btns.forEach(btn => btn.disabled = true);
+    }
+
+    function nextQuestion() {
+      current++;
+      if (current < questions.length) {
+        loadQuestion();
+      } else {
+        document.getElementById("quiz-container").innerHTML = `<h3>Trivia completada</h3><p>Puntaje final: ${score} puntos</p>`;
+      }
+    }
+
+    loadQuestion();
+  </script>
+</body>
+</html>

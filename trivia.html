@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+  <html lang="es">
+  <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="author" content="Ciro Fernandez, Agustin Honores, Ignacio Mandes, Catriel Sanchez ">
+
+    <meta name="description" content="Discriminacion hacia discapacitados motrices y mentales">
+
+    <meta name="keywords" content="Feria de ciencias,discapacidades">
+
+    
+  <title>Trivia Game</title>
+  <link rel="stylesheet" href="estilotrivia.css">
+  <link rel="icon" type="imagen/x-icon" href="img/DizKelp.png">
+  </head>
+  <body>
+    <div class="container">
+    <h1>Trivia Dizkelp </h1>
+      <nav>
+           <ul>
+            <li><a href="index.html" target="blank">VOLVER</a></li> 
+          </ul>
+     </nav>
+   <div id="question1" class="question">
+     <p>1. ¿Esta bien discriminar a un nene sin brazos?</p>
+      <ul class="options">
+        <li><input type="radio" name="q1" value="a">no</li>
+       <li><input type="radio" name="q1" value="b">si</li>
+      </ul>
+     </div>
+   <div id="question2" class="question">
+    <p>2. ¿Serias amiguito de un nene por más que no pueda jugar a la pelota con vos?</p>
+    <ul class="options">
+      <li><input type="radio" name="q2" value="a">no</li>
+      <li><input type="radio" name="q2" value="b">si</li>
+    </ul>
+  </div>
+  <div id="question3" class="question">
+    <p>3. ¿Que harias si se estan burlando de un nene sin una pierna?</p>
+    <ul class="options">
+      <li><input type="radio" name="q3" value="a">No hago nada y me quedo callado</li>
+      <li><input type="radio" name="q3" value="b">Buscas a un adulto para que les diga que paren</li>
+      <li><input type="radio" name="q3" value="c">Me sumo a ellos y me burlo de el</li>
+    </ul>
+  </div>
+  <div id="question4" class="question">
+    <p>4. ¿Ayudarias a un amigo con dislexia a estudiar?</p>
+    <ul class="options">
+      <li><input type="radio" name="q4" value="a">No, porque perdería tiempo</li>
+      <li><input type="radio" name="q4" value="b">Si, obvio</li>
+    </ul>
+  </div>
+  <div id="question5" class="question">
+    <p>5. ¿serias amigo de alguien que no puede leer bien o que tenga otras dificultades para comprender otras cosas?</p>
+    <ul class="options">
+      <li><input type="radio" name="q5" value="a">no, por que es alguien raro</li>
+      <li><input type="radio" name="q5" value="b">no, por que no tengo paciencia para aguantarlo</li>
+      <li><input type="radio" name="q5" value="c">si, lo trataria con paciencia y amor</li>
+    </ul>
+  </div>
+  <button onclick="checkAnswers()">Comprobar respuestas</button>
+  <p id="result"></p>
+</div>
+ <div> 
+  <label>Puntua a la pagina del 1 al 10</label>
+
+  <input type="number" id="puntuacion">
+  <button onclick="enviar()">INGRESAR</button>
+  <div id="boxdato">
+
+  </div>
+  <h2>Muchas gracias por su atencion</h2>
+</div>
+
+  
+<script src="javascripttrivia.js"></script>
+</body>
+</html>

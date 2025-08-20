@@ -1,0 +1,60 @@
+.pepe{
+    display: flex;
+    flex-direction: column;
+align-content: center;
+justify-content: center;
+align-items: center;
+  height: 450px;
+  width: 350px;
+  background-color: aliceblue;
+  margin: 20px;
+  border-radius: 10px;
+  border: #000 2px solid;
+  height: 450px;
+  width: 350px;
+
+}
+body{
+    display: flex;
+    flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  background-color: #2e98a7;
+}
+section{
+  display: flex;
+}
+#boxdato{
+      display: flex;
+justify-content: center;
+  height: 450px;
+  width: 350px;
+  background-color: aliceblue;
+  margin: 20px;
+  border-radius: 10px;
+  border: #000 2px solid;
+  height: 450px;
+  width: 350px;
+
+}
+h1{
+  margin: 5px;
+}
+.form{
+  display: flex;
+}
+#BoxForm{
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+  height: 150px;
+}
+button{
+  margin: 5px;
+}
+li{
+  list-style: none;
+  color: #000;
+  
+}
